@@ -1,0 +1,59 @@
+{
+  "menu": [
+    {
+      "url": "/dashboard",
+      "name": "Panel",
+      "icon": "menu-icon tf-icons mdi mdi-home-outline",
+      "slug": "panel"
+    },
+    {
+      "name": "Usuarios",
+      "icon": "menu-icon tf-icons mdi mdi-account-group-outline",
+      "slug": "usuarios",
+      "submenu": [
+        {
+          "url": "usuarios",
+          "name": "Lista de usuarios",
+          "slug": "layouts-collapsed-menu",
+          "icon": "mdi mdi-account-multiple-outline"
+        },
+        {
+          "url": "estudiantes",
+          "name": "Lista de estudiantes",
+          "slug": "layouts-collapsed-menu",
+          "icon": "mdi mdi-account-multiple-outline"
+        },
+        {
+          "url": "/roles",
+          "name": "Roles y permisos",
+          "slug": "layouts-content-navbar",
+          "icon": "mdi mdi-shield-account-outline"
+        }
+      ]
+    },
+    {
+      "url": "/estructura_curso",
+      "name": "Modelos 3D",
+      "icon": "menu-icon tf-icons mdi mdi-cube-scan",
+      "slug": "modelos"
+    },
+    {
+      "url": "/taller",
+      "name": "Taller Virtual",
+      "icon": "menu-icon tf-icons mdi mdi-tools",
+      "slug": "taller"
+    },
+    {
+      "name": "Laravel Example",
+      "icon": "menu-icon tf-icons mdi mdi-language-php",
+      "slug": "laravel-example",
+      "submenu": [
+        {
+          "url": "laravel/user-management",
+          "name": "User Management",
+          "slug": "laravel-example-user-management"
+        }
+      ]
+    }
+  ]
+}
