@@ -92,6 +92,7 @@ use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\authentications\ForgotPasswordCover;
 use App\Http\Controllers\authentications\TwoStepsBasic;
 use App\Http\Controllers\authentications\TwoStepsCover;
+use App\Http\Controllers\CaminoController;
 use App\Http\Controllers\wizard_example\Checkout as WizardCheckout;
 use App\Http\Controllers\wizard_example\PropertyListing;
 use App\Http\Controllers\wizard_example\CreateDeal;
@@ -175,6 +176,15 @@ Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
 // BREEZE
+
+Route::controller(CaminoController::class)->middleware('auth')->group(function () {
+  Route::get('/materiales/{id}', 'mostrar');
+  Route::get('/cards', 'cards')->name('cards');
+  Route::get('/video', 'video')->name('video_1_tema1');
+  Route::get('/cartas_magicas', 'cartas_magicas')->name('cartas_magicas_1_tema1');
+  Route::get('/pdf', 'pdf')->name('pdf');
+  Route::get('/modelos3D', 'modelos3D')->name('modelos3D_1_tema1');
+});
 
 
 Route::get('/', function () {
