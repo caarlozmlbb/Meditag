@@ -179,11 +179,20 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
 Route::controller(CaminoController::class)->middleware('auth')->group(function () {
   Route::get('/materiales/{id}', 'mostrar');
-  Route::get('/cards', 'cards')->name('cards');
-  Route::get('/video', 'video')->name('video_1_tema1');
-  Route::get('/cartas_magicas', 'cartas_magicas')->name('cartas_magicas_1_tema1');
-  Route::get('/pdf', 'pdf')->name('pdf');
-  Route::get('/modelos3D', 'modelos3D')->name('modelos3D_1_tema1');
+  // TEMA 1
+  Route::get('/{nombre}_{nivel}_tema1', [CaminoController::class, 'mostrarTema'])
+    ->where('nombre', 'video|cartas_magicas|pdf|modelos3D')
+    ->where('nivel', '[0-9]+')
+    ->name('material.tema1');
+
+
+  // TEMA 2
+
+  // TEMA 3
+
+  // TEMA 4
+
+  // TEMA 5
 });
 
 

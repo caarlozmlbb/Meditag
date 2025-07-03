@@ -17,5 +17,6 @@ class MaterialEstudio extends Model
     'nombre',
     'tiempo',
     'estado',
+    'descripcion'
   ];
 }

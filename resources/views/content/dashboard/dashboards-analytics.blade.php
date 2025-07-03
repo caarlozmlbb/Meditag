@@ -76,13 +76,11 @@
                         <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60"
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <a href="{{ route('cards') }}" class="btn btn-primary text-white">
-                        Cards Pruebas
-                    </a>
-
-                    <button id="boton-select" class="btn btn-primary">
-
+                    <button id="boton-select"class="btn btn-success w-100 fw-bold py-2 start-lesson-btn">
+                        <i class="fas fa-play me-2"></i>
                     </button>
+
+
                     <p class="small text-muted mb-0">¡Solo 2 lecciones más para alcanzar tu objetivo diario!</p>
                 </section>
 
@@ -103,6 +101,18 @@
                             success: function(data) {
                                 let html = '';
 
+                                // 👇 Nuevo cálculo de progreso
+                                let total = data.length;
+                                let completados = data.filter(m => m.estado === 'completado').length;
+                                let porcentaje = total === 0 ? 0 : Math.round((completados / total) * 100);
+
+
+                                // Actualizar barra y texto de progreso
+                                $('#barra-progreso').css('width', `${porcentaje}%`);
+                                $('#texto-progreso').text(`${porcentaje}%`);
+
+                                $('#boton-select').html(`Comenzar leccion: ${id}`);
+                                $('#resultado').html(html);
                                 data.forEach(function(material) {
                                     let estadoTexto = material.estado === 'completado' ? 'Completado' :
                                         'Incompleto';
@@ -114,28 +124,31 @@
                                         'hover-bg-light' : 'hover-bg-light';
                                     let iconBg = material.estado === 'completado' ? 'bg-primary' : 'bg-secondary';
 
-                                    let rutaHref = `/materiales/${material.nombre}_${id}_tema1`;
+                                    let rutaHref = `/${material.nombre}_${id}_tema1`;
 
                                     html += `
-                        <li class="mb-2 p-3 rounded-3 ${bgClase}" data-target="inbox">
-                            <a href="${rutaHref}" class="d-flex align-items-center text-decoration-none">
-                                <div class="icon-wrapper ${iconBg} text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                                    style="width: 35px; height: 35px;">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <span class="fw-semibold text-dark">${material.nombre ?? '---'}</span>
-                                    <div class="small text-muted">Tiempo: ${material.tiempo ?? '--:--:--'}</div>
-                                </div>
-                                <div class="d-flex align-items-center ${estadoClase} ms-auto">
-                                    <span class="me-1 small fw-semibold">${estadoTexto}</span>
-                                    <i class="${iconoEstado}"></i>
-                                </div>
-                            </a>
-                        </li>
-                    `;
+                                    <li class="mb-2 p-3 rounded-3 ${bgClase}" data-target="inbox">
+                                        <a href="${rutaHref}" class="d-flex align-items-center text-decoration-none">
+                                            <div class="icon-wrapper ${iconBg} text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                                style="width: 35px; height: 35px;">
+                                                <i class="${iconoEstado}"></i>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <span class="fw-semibold text-dark">
+                                                    ${material.descripcion ?? '---'}
+                                                </span>
+                                                <div class="small text-muted">Tiempo: ${material.tiempo ?? '--:--:--'}</div>
+                                            </div>
+                                            <div class="d-flex align-items-center ${estadoClase} ms-auto">
+                                                <span class="me-1 small fw-semibold">${estadoTexto}</span>
+                                                <i class="${iconoEstado}"></i>
+                                            </div>
+                                        </a>
+                                    </li>
+                                `;
+
                                 });
-                                $('#boton-select').html(`Resolver Nivel: ${id}`);
+                                $('#boton-select').html(`Comenzar leccion: ${id}`);
                                 $('#resultado').html(html);
                             },
                             error: function() {
@@ -143,6 +156,8 @@
                             }
                         });
                     }
+
+
 
                     $(document).ready(function() {
                         cargarMaterial(1);
@@ -217,8 +232,9 @@
 
 
 
-                        <div class="d-flex flex-column align-items-center position-relative" style="margin-left: 50px;">
-                            <a href="" class="nivel-3">
+                        <div class="material-div d-flex flex-column align-items-center position-relative"
+                            style="margin-left: 50px;" data-id="4">
+                            <a href="#" class="nivel-3">
                                 <img class="container-img-lock"
                                     src="{{ asset('/assets/img/camino-serpiente/bloqueado.png') }}" alt=""
                                     width="80">
@@ -235,8 +251,9 @@
                         </div>
 
 
-                        <div class="d-flex flex-column align-items-center position-relative" style="margin-left: -40px;">
-                            <a href="">
+                        <div class="material-div d-flex flex-column align-items-center position-relative"
+                            style="margin-left: -40px;" data-id="5">
+                            <a href="#">
                                 <img class="container-img-lock"
                                     src="{{ asset('/assets/img/camino-serpiente/bloqueado.png') }}" alt=""
                                     width="80">

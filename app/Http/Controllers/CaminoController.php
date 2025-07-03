@@ -12,7 +12,7 @@ class CaminoController extends Controller
     $materiales = MaterialEstudio::where('id_actividad', $id)->get();
 
     if ($materiales->isEmpty()) {
-      return response()->json(['error' => 'No encontrado'], 404);
+      return response()->json(['error' => 'No encontradoss'], 404);
     }
 
     return response()->json($materiales);
@@ -21,5 +21,14 @@ class CaminoController extends Controller
   public function cards()
   {
     return view('content.cards.estudioCards');
+  }
+
+  public function mostrarTema($nombre, $nivel)
+  {
+    if ($nombre == 'cartas_magicas') {
+      return view('content.cards.estudioCards');
+    } elseif ($nombre == 'video') {
+      return view('Temas.MaterialEstuio.video');
+    }
   }
 }

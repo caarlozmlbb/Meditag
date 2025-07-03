@@ -2,10 +2,11 @@
 
     <input type="radio" id="radio-1" name="radio-card" checked>
     <article class="card" style="--angle:4deg">
-        <img class="card-img" src="https://picsum.photos/id/21/200/300">
+        <img class="card-img"
+            src="https://www.kenhub.com/thumbor/hDCdDNj_Gw5DareYBrU9lAw8c8w=/fit-in/800x1600/filters:watermark(/images/logo_url.png,-10,-10,0):background_color(FFFFFF):format(jpeg)/images/article/hueso-occipital/4VNhVhQEsIUjon3YYYu3zw_os_occipitale_3_atlas_PkewzUnXqAgfybEdq9zkWA.png">
         <div class="card-data">
             <span class="card-num">1/7</span>
-            <h2>Alejandro Escamilla</h3>
+            <h2>Oxipital</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus maiores accusantium cumque
                     atque? Ex voluptatem quisquam temporibus. Provident rerum quae nemo eligendi fugiat!</p>
                 <footer>
@@ -15,10 +16,78 @@
         </div>
     </article>
 
+
+    <div style="position: fixed; bottom: 10px; right: 10px; z-index: 1000;">
+        <button id="play-btn" class="audio-btn active" onclick="document.getElementById('background-music').play()"
+            title="Reproducir música">🔈</button>
+        <button id="pause-btn" class="audio-btn" onclick="document.getElementById('background-music').pause()"
+            title="Pausar música">🔇</button>
+    </div>
+
+    <!-- Botones controladores de la música-->
+    <audio id="background-music" autoplay loop>
+        <source src="{{ asset('/assets/audio/Neighborhood.mp3') }}" type="audio/mpeg">
+        Tu navegador no soporta el audio HTML5.
+    </audio>
+    <style>
+        .audio-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audio-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .audio-btn:active {
+            transform: scale(0.95);
+        }
+
+        .audio-btn.active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .audio-btn.inactive {
+            background: #f44336;
+            color: white;
+        }
+
+        /* Indicador de estado */
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1001;
+            transition: opacity 0.3s ease;
+        }
+
+        .status-indicator.fade-out {
+            opacity: 0;
+        }
+    </style>
+
+
     <!-- card 2 -->
     <input type="radio" id="radio-2" name="radio-card">
     <article class="card" style="--angle:-8deg">
-        <img class="card-img" src="https://picsum.photos/id/30/200/300">
+        <img class="card-img"
+            src="https://www.kenhub.com/thumbor/hDCdDNj_Gw5DareYBrU9lAw8c8w=/fit-in/800x1600/filters:watermark(/images/logo_url.png,-10,-10,0):background_color(FFFFFF):format(jpeg)/images/article/hueso-occipital/4VNhVhQEsIUjon3YYYu3zw_os_occipitale_3_atlas_PkewzUnXqAgfybEdq9zkWA.png">
         <div class="card-data">
             <span class="card-num">2/7</span>
             <h2>Shyamanta Baruah</h3>
@@ -155,6 +224,7 @@
         margin: 0;
         padding: 1rem;
         font: 1rem system-ui;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
 
     .cards {

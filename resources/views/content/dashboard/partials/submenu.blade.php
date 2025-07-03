@@ -27,15 +27,15 @@
                         <div class="mb-3">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span class="small fw-semibold">Progreso Semanal</span>
-                                <span class="small text-muted">78%</span>
+                                <span class="small text-muted" id="texto-progreso">0%</span>
                             </div>
-
-
 
                             <div class="progress" style="height: 8px;">
-                                <div class="progress-bar bg-gradient bg-success" style="width: 78%"></div>
+                                <div class="progress-bar bg-gradient bg-success" id="barra-progreso" style="width: 0%">
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
